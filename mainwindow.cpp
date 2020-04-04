@@ -17,6 +17,36 @@ MainWindow::MainWindow(QWidget *parent)
     testBomb.date = QDate::fromString("04.04.2005", "dd.MM.yyyy");
     qDebug() << testBomb.remainingDays();
     */
+    dataBase = QSqlDatabase::addDatabase("QSQLITE");
+    dataBase.setDatabaseName("awAccaunting.sqlite");
+
+    if(!dataBase.open())
+    {
+        qDebug() << dataBase.lastError().text();
+    }else{
+        qDebug() << "All is OK";
+        sqlQuery = QSqlQuery(dataBase);
+
+        fillTableBombs("bombs");
+        fillTableMissiles("missiles");
+
+    }
+}
+
+void MainWindow::fillTableBombs(QString tableName)
+{
+    QSqlQueryModel *model = new QSqlQueryModel;
+    sqlQuery.exec("SELECT * FROM " + tableName);
+    model->setQuery(sqlQuery);
+    ui->tableBombs->setModel(model);
+}
+
+void MainWindow::fillTableMissiles(QString tableName)
+{
+    QSqlQueryModel *model = new QSqlQueryModel;
+    sqlQuery.exec("SELECT * FROM " + tableName);
+    model->setQuery(sqlQuery);
+    ui->tableMissiles->setModel(model);
 }
 
 MainWindow::~MainWindow()
