@@ -24,7 +24,8 @@ public:
     ~MainWindow();
     void fillTableBombs(QString tableName);
     void fillTableMissiles(QString tableName);
-
+    void setHeader();
+    QStringList horizontalHeader;
 private:
     Ui::MainWindow *ui;
 };

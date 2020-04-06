@@ -27,26 +27,55 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "All is OK";
         sqlQuery = QSqlQuery(dataBase);
 
+        setHeader();
         fillTableBombs("bombs");
         fillTableMissiles("missiles");
 
     }
 }
 
+void MainWindow::setHeader()
+{
+    horizontalHeader.append("№ п/п");
+    horizontalHeader.append("Наименование");
+    horizontalHeader.append("Количество");
+    horizontalHeader.append("Дата изготовления");
+    horizontalHeader.append("НСХ");
+    horizontalHeader.append("Ценность");
+    horizontalHeader.append("H до НСХ");
+    horizontalHeader.append("H после НСХ");
+}
+
 void MainWindow::fillTableBombs(QString tableName)
 {
     QSqlQueryModel *model = new QSqlQueryModel;
+
     sqlQuery.exec("SELECT * FROM " + tableName);
     model->setQuery(sqlQuery);
+
+    for(int i = 0; i < horizontalHeader.size(); ++i)
+    {
+        model->setHeaderData(i, Qt::Horizontal, horizontalHeader[i]);
+    }
+
     ui->tableBombs->setModel(model);
+    ui->tableBombs->resizeColumnsToContents();
 }
 
 void MainWindow::fillTableMissiles(QString tableName)
 {
     QSqlQueryModel *model = new QSqlQueryModel;
+
     sqlQuery.exec("SELECT * FROM " + tableName);
     model->setQuery(sqlQuery);
+
+    for(int i = 0; i < horizontalHeader.size(); ++i)
+    {
+        model->setHeaderData(i, Qt::Horizontal, horizontalHeader[i]);
+    }
+
     ui->tableMissiles->setModel(model);
+    ui->tableMissiles->resizeColumnsToContents();
 }
 
 MainWindow::~MainWindow()
