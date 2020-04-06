@@ -12,3 +12,9 @@ additem::~additem()
 {
     delete ui;
 }
+
+void additem::on_spinBox_valueChanged(int arg1)
+{
+    ui->tableBombs->setRowCount(arg1);
+    ui->tableMissiles->setRowCount(arg1);
+}

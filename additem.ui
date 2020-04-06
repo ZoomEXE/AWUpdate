@@ -37,14 +37,18 @@
       </spacer>
      </item>
      <item>
-      <widget class="QSpinBox" name="spinBox"/>
+      <widget class="QSpinBox" name="spinBox">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -53,6 +57,9 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QTableWidget" name="tableMissiles">
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
+         </property>
          <row>
           <property name="text">
            <string>1</string>
@@ -116,27 +123,42 @@
          </row>
          <column>
           <property name="text">
-           <string>New Column</string>
+           <string>№ п/п</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>New Column</string>
+           <string>Наименование</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>New Column</string>
+           <string>Количество</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>New Column</string>
+           <string>Дата изготовления</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>New Column</string>
+           <string>НСХ</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Ценность</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>H до НСХ</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>H после НСХ</string>
           </property>
          </column>
         </widget>
