@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>624</width>
+    <height>392</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,14 +20,14 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="labelFind">
           <property name="text">
            <string>Поиск</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit"/>
+         <widget class="QLineEdit" name="finder"/>
         </item>
        </layout>
       </item>
@@ -67,12 +67,49 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>25</height>
+     <width>624</width>
+     <height>24</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Правка</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="remove_item"/>
+    <addaction name="add_item"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="open_instruction"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="remove_item">
+   <property name="text">
+    <string>Удалить запись</string>
+   </property>
+  </action>
+  <action name="add_item">
+   <property name="text">
+    <string>Добавить запись</string>
+   </property>
+  </action>
+  <action name="open_instruction">
+   <property name="text">
+    <string>Инструкция</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

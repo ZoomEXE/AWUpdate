@@ -83,3 +83,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_add_item_triggered()
+{
+    ui->statusbar->showMessage("Добавить новый элемент");
+    additem *add = new additem;
+    add->setModal(true);
+    add->show();
+}

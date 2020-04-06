@@ -8,6 +8,9 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlQueryModel>
+#include <QMenuBar>
+#include <QMenu>
+#include <additem.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,6 +29,9 @@ public:
     void fillTableMissiles(QString tableName);
     void setHeader();
     QStringList horizontalHeader;
+private slots:
+    void on_add_item_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
