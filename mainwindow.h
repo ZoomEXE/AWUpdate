@@ -3,14 +3,16 @@
 
 #include <QMainWindow>
 #include <QDebug>
-#include "weapon.h"
 #include <QSql>
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlQueryModel>
 #include <QMenuBar>
 #include <QMenu>
-#include <additem.h>
+#include <QItemDelegate>
+
+#include "weapon.h"
+#include "additem.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,11 +30,27 @@ public:
     void fillTableBombs(QString tableName);
     void fillTableMissiles(QString tableName);
     void setHeader();
+
     QStringList horizontalHeader;
+    QVector <Weapon> missiles, bombs;
 private slots:
     void on_add_item_triggered();
-
+public slots:
+    void addValue(QVector <Weapon> tempMissiles, QVector <Weapon> tempBombs);
 private:
     Ui::MainWindow *ui;
+};
+
+//Делегат для запрета редактирования столбцов в TableWidget
+class NonEditTableColumnDelegate : public QItemDelegate
+{
+    Q_OBJECT
+public:
+    NonEditTableColumnDelegate(QObject * parent = 0) : QItemDelegate(parent) {}
+    virtual QWidget * createEditor ( QWidget *, const QStyleOptionViewItem &,
+                                     const QModelIndex &) const
+    {
+        return 0;
+    }
 };
 #endif // MAINWINDOW_H

@@ -9,6 +9,7 @@
 #include <QString>
 #include <QDate>
 #include <QDebug>
+#include <QVector>
 
 class Weapon : public QObject
 {
@@ -19,6 +20,27 @@ public:
     int count, cost, HCX, HbeforeHCX, HafterHCX;
     QString name;
     QDate date;
+
+    Weapon(const Weapon &other):
+            QObject(other.parent()),
+            count(other.count),
+            cost(other.cost),
+            HCX(other.HCX),
+            HbeforeHCX(other.HbeforeHCX),
+            HafterHCX(other.HafterHCX),
+            name(other.name),
+            date(other.date)
+        {}
+    Weapon& operator=(const Weapon &other){
+        count = other.count;
+        cost = other.cost;
+        HCX = other.HCX;
+        HbeforeHCX = other.HbeforeHCX;
+        HafterHCX = other.HafterHCX;
+        name = other.name;
+        date = other.date;
+        return *this;
+    }
 
     int remainingDays(); //Количество дней до конца НСХ
 
