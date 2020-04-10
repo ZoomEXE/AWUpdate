@@ -10,14 +10,17 @@ additem::additem(QWidget *parent) :
     ui->tableMissiles->resizeColumnsToContents();
     ui->tableBombs->resizeColumnsToContents();
 
+    ui->tableBombs->horizontalHeader()->setStretchLastSection(true);
+    ui->tableMissiles->horizontalHeader()->setStretchLastSection(true);
+
     ui->tabWidget->setTabText(0, "Авиационные ракеты");
     ui->tabWidget->setTabText(1, "Авиационные бомбы");
 
     tempMissiles.resize(1);
-    tempMissiles.resize(1);
+    tempBombs.resize(1);
 
-    ui->tableMissiles->setItemDelegateForColumn(0,new NonEditTableColumnDelegate());
-    ui->tableBombs->setItemDelegateForColumn(0, new NonEditTableColumnDelegate());
+    //ui->tableMissiles->setItemDelegateForColumn(0,new NonEditTableColumnDelegate());
+    //ui->tableBombs->setItemDelegateForColumn(0, new NonEditTableColumnDelegate());
 }
 
 additem::~additem()
@@ -40,32 +43,58 @@ void additem::on_tableMissiles_cellChanged(int row, int column)
     switch (column)
     {
         case 0:
-            break;
-        case 1:
             tempMissiles[row].name = ui->tableMissiles->item(row, column)->text();
             break;
-        case 2:
+        case 1:
             tempMissiles[row].count = ui->tableMissiles->item(row, column)->text().toInt();
             break;
-        case 3:
+        case 2:
             tempMissiles[row].date = QDate::fromString(ui->tableMissiles->item(row, column)->text(),  "dd.MM.yyyy");
             break;
-        case 4:
+        case 3:
             tempMissiles[row].HCX = ui->tableMissiles->item(row, column)->text().toInt();
             break;
-        case 5:
+        case 4:
             tempMissiles[row].cost = ui->tableMissiles->item(row, column)->text().toInt();
             break;
-        case 6:
+        case 5:
             tempMissiles[row].HbeforeHCX = ui->tableMissiles->item(row, column)->text().toInt();
             break;
-        case 7:
-            tempMissiles[row].name = ui->tableMissiles->item(row, column)->text().toInt();
+        case 6:
+            tempMissiles[row].HafterHCX = ui->tableMissiles->item(row, column)->text().toInt();
             break;
     }
 }
 
 void additem::on_buttonBox_accepted()
 {
-    connect(ui->buttonBox, SIGNAL(signalTempVectors(tempMissiles, tempBombs)),this,SLOT(addValue(tempMissiles, tempBombs)));
+   emit signalTempVectors(tempMissiles, tempBombs);
+}
+
+void additem::on_tableBombs_cellChanged(int row, int column)
+{
+    switch (column)
+    {
+        case 0:
+            tempBombs[row].name = ui->tableBombs->item(row, column)->text();
+            break;
+        case 1:
+            tempBombs[row].count = ui->tableBombs->item(row, column)->text().toInt();
+            break;
+        case 2:
+            tempBombs[row].date = QDate::fromString(ui->tableBombs->item(row, column)->text(),  "dd.MM.yyyy");
+            break;
+        case 3:
+            tempBombs[row].HCX = ui->tableBombs->item(row, column)->text().toInt();
+            break;
+        case 4:
+            tempBombs[row].cost = ui->tableBombs->item(row, column)->text().toInt();
+            break;
+        case 5:
+            tempBombs[row].HbeforeHCX = ui->tableBombs->item(row, column)->text().toInt();
+            break;
+        case 6:
+            tempBombs[row].HafterHCX = ui->tableBombs->item(row, column)->text().toInt();
+            break;
+    }
 }

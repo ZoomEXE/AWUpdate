@@ -26,6 +26,8 @@ private slots:
     
     void on_tableMissiles_cellChanged(int row, int column);
 
+    void on_tableBombs_cellChanged(int row, int column);
+
 private:
     Ui::additem *ui;
 
